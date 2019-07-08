@@ -1,0 +1,27 @@
+{
+  "name": "wechat_bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/xizheng/wechat_bot.git",
+  "author": "SMITH <xizheng126@126.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "headless-chrome-crawler": "^1.8.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "standard": "^12.0.1"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "$"
+    ],
+    "ignore": []
+  }
+}
