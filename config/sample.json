@@ -1,0 +1,9 @@
+{
+  "diaobao": {
+    "url": "http://dota.uuu9.com",
+    "cron": "0 4 * * *"
+  },
+  "bot": {
+    "webhook": "https://qyapi.weixin.qq.com"
+  }
+}
