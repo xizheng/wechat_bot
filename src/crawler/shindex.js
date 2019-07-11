@@ -9,6 +9,7 @@ export default async ({ date, url }) => {
   let res = {}
   const crawler = await HCCrawler.launch({
     maxConcurrency: 1,
+    args: ['--no-sandbox'],
     onSuccess: async result => {
       res = result.result
     },
