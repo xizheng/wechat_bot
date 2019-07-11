@@ -2,10 +2,10 @@ import HCCrawler from 'headless-chrome-crawler'
 import moment from 'moment'
 
 export default async ({ date, url }) => {
+  const _date = date || moment().format('MMDD')
   console.log('TCL: ------------------------')
-  console.log('TCL: date, url', date, url)
+  console.log('TCL: date, url', _date, url)
   console.log('TCL: ------------------------')
-  const _date = date || moment().format('MD')
   let res = {}
   const crawler = await HCCrawler.launch({
     maxConcurrency: 1,
@@ -43,7 +43,7 @@ export default async ({ date, url }) => {
         $dom.children('img').attr('src'),
         $dom.attr('href')
       ]
-      const date = description.match(/\d+月\d+日/)[0].replace(/[^\d]|0+/g, '')
+      const date = [ description.match(/(\d+)月/)[1], description.match(/(\d+)日/)[1] ].map(item => item.padStart(2, 0)).join('')
       const title = description.replace(/.*：/, '')
       if (date === _date) {
         return { description, date, title, picurl, url }
