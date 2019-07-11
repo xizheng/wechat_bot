@@ -1,7 +1,11 @@
 {
   "diaobao": {
     "url": "http://dota.uuu9.com",
-    "cron": "0 4 * * *"
+    "cron": "30 16 * * *"
+  },
+  "shindex": {
+    "url": "http://quote.eastmoney.com/zs000001.html",
+    "cron": "0 15 * * *"
   },
   "bot": {
     "webhook": "https://qyapi.weixin.qq.com"
