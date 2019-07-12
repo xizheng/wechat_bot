@@ -41,7 +41,7 @@ export default async ({ date, url }) => {
     evaluatePage: async () => {
       const { _url } = await window.__getExtractors()
       const [ title, description, picurl, url ] = [
-        $('#price9').text() + ' ' + $('#km2').text() + ($('#price9').hasClass('red') ? '↑' : '↓'),
+        $('#price9').text() + '  ' + ($('#price9').hasClass('red') ? '↑' : '↓') + $('#km2').text(),
         $('body div.fr.w790 > div.w578 > div.gszb.mb10 > div.rox').text(),
         $('#picr').attr('src'),
         _url
