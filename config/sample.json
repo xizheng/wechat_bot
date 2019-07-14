@@ -1,13 +1,20 @@
 {
   "diaobao": {
     "url": "http://dota.uuu9.com",
-    "cron": "30 16 * * *"
+    "cron": "0 18 * * *"
   },
   "shindex": {
     "url": "http://quote.eastmoney.com/zs000001.html",
-    "cron": "0 15 * * *"
+    "cron": "2 15 * * *"
+  },
+  "weibo": {
+    "url": "https://m.weibo.cn/u/1640571365",
+    "newsUrl": "https://weibo.com/p/1035051640571365/home?is_ori=1"
   },
   "bot": {
     "webhook": "https://qyapi.weixin.qq.com"
+  },
+  "crawler": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36"
   }
 }

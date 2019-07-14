@@ -29,11 +29,12 @@ function addTask (type) {
   const { cron, ...options } = config.get(type)
   tasks.add({
     type,
-    options
+    options: { ...options, crawler: config.get('crawler') }
   }, {
     repeat: cron ? { cron } : undefined
   })
 }
 
-addTask('diaobao')
-addTask('shindex')
+// addTask('diaobao')
+// addTask('shindex')
+addTask('weibo')

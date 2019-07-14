@@ -1,8 +1,8 @@
 import HCCrawler from 'headless-chrome-crawler'
 import moment from 'moment'
 
-export default async ({ date, url }) => {
-  const _date = date || moment().format('YYYY-MM-DD')
+export default async ({ date, url, newsUrl }) => {
+  const _date = date || moment().format('MMDD')
   console.log('TCL: ------------------------')
   console.log('TCL: date, url', _date, url)
   console.log('TCL: ------------------------')
@@ -14,7 +14,7 @@ export default async ({ date, url }) => {
       res = result.result
     },
     customCrawl: async (page, crawl) => {
-      await page.exposeFunction('__getExtractors', () => ({ _date, _url: url }))
+      await page.exposeFunction('__getExtractors', () => ({ _date, _url: url, _newsUrl: newsUrl }))
       const result = await crawl()
       return result
     }
@@ -34,23 +34,20 @@ export default async ({ date, url }) => {
 
   await crawler.queue({
     url,
-    retryCount: 60,
+    retryCount: 5,
     retryDelay: 10 * 1000,
     waitFor: {
-      selectorOrFunctionOrTimeout: () => !!$('#price9').text()
+      selectorOrFunctionOrTimeout: '.weibo-member'
     },
     evaluatePage: async () => {
-      const { _url, _date } = await window.__getExtractors()
-      const date = $('#hqday').text().match(/[\d-]+/)[0]
-      if (date !== _date) {
-        throw new Error()
-      }
-      const [ title, description, picurl, url ] = [
-        $('#price9').text() + '  ' + ($('#price9').hasClass('red') ? '↑' : '↓') + $('#km2').text(),
-        $('body div.fr.w790 > div.w578 > div.gszb.mb10 > div.rox').text(),
-        $('#picr').attr('src'),
-        _url
-      ]
+      const { _newsUrl } = await window.__getExtractors()
+      const $dom = $('.weibo-og').filter(function () {
+        return $(this).next('.weibo-rp').length === 0
+      }).eq(0)
+      const url = _newsUrl
+      const description = $dom.find('.weibo-text').text()
+      const title = $dom.parents('.card.weibo-member').find('.m-avatar-box').text().replace(/\s+|来自.*/g, ' ').trim()
+      const picurl = $dom.find('.weibo-media img:first').attr('src') || $('.m-avatar-box img:first').attr('src')
       return {
         title,
         description,
