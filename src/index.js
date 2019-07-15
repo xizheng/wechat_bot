@@ -35,6 +35,6 @@ function addTask (type) {
   })
 }
 
-// addTask('diaobao')
-// addTask('shindex')
-addTask('weibo')
+addTask('diaobao')
+addTask('shindex')
+// addTask('weibo')
